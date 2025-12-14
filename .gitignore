@@ -1,24 +1,59 @@
+# =========================
 # Python virtual environment
+# =========================
 venv/
+.env
 
-# YOLO training outputs
+# =========================
+# Python cache / temp
+# =========================
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# =========================
+# YOLO / ML outputs
+# =========================
 runs/
-
-# Datasets & videos
-video/
-yolo-dataset/
-helmet-detection/
-
-# Model weights
+output/
 *.pt
 *.onnx
 
-# Zipped data
+# =========================
+# Datasets & raw media
+# =========================
+video/
+yolo-dataset/
+helmet-detection/
+*.mp4
+*.avi
+*.mov
+*.jpg
+*.png
+
+# =========================
+# Docker
+# =========================
+.etle_pgdata/
+**/pgdata/
+
+# =========================
+# Archives
+# =========================
 *.zip
+*.tar
+*.tar.gz
 
-# Python cache
-__pycache__/
-.ipynb_checkpoints/
-
-# OS files
+# =========================
+# OS / Editor junk
+# =========================
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# =========================
+# Logs
+# =========================
+*.log
+
