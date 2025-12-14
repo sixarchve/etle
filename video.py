@@ -53,7 +53,7 @@ while True:
         ids = r.boxes.id
 
         for i, box in enumerate(r.boxes):
-            cls_id = int(box.cls[0])          # your dataset: 1 = no-helmet
+            cls_id = int(box.cls[0])
             det_conf = float(box.conf[0])
             x1, y1, x2, y2 = map(int, box.xyxy[0])
 
@@ -63,11 +63,9 @@ while True:
 
             seen_ids.add(track_id)
 
-            # 1=nohelmet, 0=helmet/ok
             hist[track_id].append(1 if cls_id == 1 else 0)
             ratio = sum(hist[track_id]) / len(hist[track_id])
 
-            # lock when stable
             if (
                 track_id not in state_nohelmet and
                 len(hist[track_id]) == WINDOW_SIZE and
@@ -94,7 +92,6 @@ while True:
                 2
             )
 
-            # Save once per track_id (same as your logic)
             if track_id in state_nohelmet and track_id not in saved_ids:
                 ts = datetime.now()
                 event_id = str(uuid.uuid4())
@@ -103,7 +100,6 @@ while True:
                 event_dir = os.path.join(SAVE_DIR, event_id)
                 os.makedirs(event_dir, exist_ok=True)
 
-                # file names inside folder
                 img_filename = "evidence.jpg"
                 json_filename = "metadata.json"
                 img_path = os.path.join(event_dir, img_filename)
@@ -122,9 +118,6 @@ while True:
                     "frame_index": frame_idx,
                     "timestamp": ts.isoformat(),
                     "evidence_image": img_filename,
-                    # NOTE: loader.py will derive evidence_path from folder;
-                    # you can include it too if you want:
-                    # "evidence_path": img_path,
                     "source_video": VIDEO_PATH,
                     "model_path": MODEL_PATH,
                     "det_conf": round(det_conf, 3),
