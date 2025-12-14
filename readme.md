@@ -155,11 +155,3 @@ This project demonstrates:
 * Handling unstructured → structured data
 * Real-world data engineering concepts
 * Reproducible and modular pipeline design
-
----
-
-## ✍️ Author
-
-**Name:** Aether
-**Course:** Data Processing & Infrastructure
-**Project Type:** Final Assignment
